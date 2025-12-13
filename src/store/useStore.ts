@@ -9,5 +9,5 @@ type UseStore = {
 export const useStore = create<UseStore>((set) => ({
   saveCount: 0,
   increment: () => set((state) => ({ saveCount: state.saveCount + 1 })),
-  decrement: () => set((state) => ({ saveCount: state.saveCount - 1 })),
+  decrement: () => set((state) => ({ saveCount: state.saveCount > 0 ? state.saveCount - 1 : 0})),
 }));
