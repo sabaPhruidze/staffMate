@@ -1,6 +1,10 @@
+import Header from "./components/main/Header";
+
 function App() {
   return (
-    <div className="w-40 h-60 bg-red-800">
+    <div>
+      <Header />
+
       <h1>saba</h1>
     </div>
   );
