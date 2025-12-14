@@ -30,28 +30,43 @@ const EmployeeList = () => {
     queryKey: ["employeeList"],
     queryFn: async () => {
       const response = await axios.get(
-        "https://jsonplaceholder.typicode.com/users"
+        "https://jsonplaceholder.typicode.com/usersf"
       );
       return response.data as UserList[];
     },
   });
-  isLoading && (
-    <div className="flex justify-center align-center text-white font-bold">
-      fetching...
-    </div>
-  );
-  error && (
-    <div className="flex justify-center items-center text-red-500 font-bold">
-      Error
-    </div>
-  );
+  if (isLoading)
+    return (
+      <div className="flex justify-center align-center text-white font-bold">
+        fetching...
+      </div>
+    );
+  if (error)
+    return (
+      <div className="flex justify-center items-center text-red-500 font-bold">
+        Error
+      </div>
+    );
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-      {data?.map((item: UserList) => (
-        <div className="shadow-md, rounded-lg, hover:scale-105 transition">
-          {`${item.name} ${item.email} ${item.company.name}`}
-        </div>
-      ))}
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Company</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data?.map((item: UserList) => (
+            <tr className="shadow-md, rounded-lg, hover:scale-105 transition">
+              <td> {item.name} </td>
+              <td> {item.email} </td>
+              <td> {item.company.name} </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
