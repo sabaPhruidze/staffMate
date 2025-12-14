@@ -50,12 +50,15 @@ const EmployeeList = () => {
   const tableHeader = ["Name", "Email", "Company"];
 
   return (
-    <div className="flex flex-col justify-center items-center h-[30rem] bg-white rounded-3xl shadow-lg overflow-hidden p-6">
-      <table className="w-full border-separate border-spacing-y-2">
-        <thead className="sticky top-0 bg-gray-50">
+    <div className="flex flex-col justify-center items-center h-[30rem] bg-white rounded-3xl shadow-lg overflow-y-auto p-6">
+      <table className="w-full border-separate border-spacing-y-2 border-l-2 border-r-2 border-gray-50">
+        <thead className=" bg-gray-50">
           <tr>
             {tableHeader.map((item) => (
-              <th className="text-left uppercase text-xs tracking-wider text-gray-600 px-4 py-3 user-select:none">
+              <th
+                className="text-left uppercase text-xs tracking-wider text-gray-600 px-4 py-3 select-none"
+                key={item}
+              >
                 {item}
               </th>
             ))}
@@ -64,7 +67,7 @@ const EmployeeList = () => {
         <tbody className="transition-colors duration-200">
           {data?.map((item: UserList) => (
             <tr
-              className="odd:bg-white even:bg-gray-50 hover:bg-blue-150 transition-colors duration-200"
+              className="odd:bg-white even:bg-gray-50 hover:bg-blue-100 transition-colors duration-200"
               key={item.id}
             >
               <td className="font-medium text-gray-900"> {item.name} </td>
