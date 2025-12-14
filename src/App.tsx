@@ -3,7 +3,7 @@ import Header from "./components/main/Header";
 
 function App() {
   return (
-    <div>
+    <div className="h-full">
       <Header />
       <EmployeeList />
       <h1>saba</h1>
