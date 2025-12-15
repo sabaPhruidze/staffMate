@@ -1,44 +1,35 @@
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import axios from "axios";
-
+const API_BASE = import.meta.env.VITE_API_BASE ?? "";
 interface UserList {
   id: number;
   name: string;
-  username: string;
   email: string;
-  address: {
-    street: string;
-    suite: string;
-    city: string;
-    zipcode: string;
-    geo: {
-      lat: string;
-      lng: string;
-    };
-  };
-  phone: string;
-  website: string;
-  company: {
-    name: string;
-    catchPhrase: string;
-    bs: string;
-  };
+  company_name: string;
 }
 
 const EmployeeList = () => {
-  const { data, isLoading, error } = useQuery({
+  const {
+    data = [],
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ["employeeList"],
     queryFn: async () => {
-      const response = await axios.get(
-        "https://jsonplaceholder.typicode.com/users"
-      );
+      const response = await axios.get(`${API_BASE}/api/employees`);
+      console.log("API status:", response.status);
+      console.log("API response:", response.data);
+      if (!Array.isArray(response.data)) return []; // დაცვა
       return response.data as UserList[];
     },
   });
+
   const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: async (id: number) => {
-      return axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`);
+      return axios.delete(
+        `${import.meta.env.VITE_API_BASE ?? ""}/api/employees/${id}`
+      );
     },
     onSuccess: () => {
       console.log("removed user Clementine Bauch");
@@ -54,9 +45,10 @@ const EmployeeList = () => {
   if (error)
     return (
       <div className="flex justify-center items-center text-red-500 font-bold">
-        Error
+        {(error as Error).message}
       </div>
     );
+
   const tableHeader = ["Name", "Email", "Company"];
 
   return (
@@ -85,7 +77,7 @@ const EmployeeList = () => {
                 <td className="text-gray-600"> {item.email} </td>
                 <td className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-700">
                   {" "}
-                  {item.company.name}{" "}
+                  {item.company_name}{" "}
                 </td>
               </tr>
             ))}
