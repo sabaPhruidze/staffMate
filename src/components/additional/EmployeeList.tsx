@@ -1,6 +1,5 @@
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import axios from "axios";
-const API_BASE = import.meta.env.VITE_API_BASE ?? "";
 interface UserList {
   id: number;
   name: string;
@@ -16,7 +15,7 @@ const EmployeeList = () => {
   } = useQuery({
     queryKey: ["employeeList"],
     queryFn: async () => {
-      const response = await axios.get(`${API_BASE}/api/employees`);
+      const response = await axios.get(`/api/employees`);
       console.log("API status:", response.status);
       console.log("API response:", response.data);
       if (!Array.isArray(response.data)) return []; // დაცვა
@@ -27,9 +26,7 @@ const EmployeeList = () => {
   const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: async (id: number) => {
-      return axios.delete(
-        `${import.meta.env.VITE_API_BASE ?? ""}/api/employees/${id}`
-      );
+      return axios.delete(`/api/employees/${id}`);
     },
     onSuccess: () => {
       console.log("removed user Clementine Bauch");
@@ -79,19 +76,21 @@ const EmployeeList = () => {
                   {" "}
                   {item.company_name}{" "}
                 </td>
+                <td>
+                  <button
+                    className="rounded bg-red-500 px-3 py-1 text-white"
+                    disabled={mutation.isPending}
+                    onClick={() => mutation.mutate(item.id)}
+                    type="button"
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      <button
-        className="rounded-lg bg-blue-500 w-72 h-10 mt-10 "
-        type="button"
-        disabled={mutation.isPending}
-        onClick={() => mutation.mutate(2)}
-      >
-        {mutation.isPending ? "Deleting..." : "Delete"}
-      </button>
     </div>
   );
 };
