@@ -41,6 +41,7 @@ const EmployeeList = () => {
       return axios.delete(`https://jsonplaceholder.typicode.com/users/${id}`);
     },
     onSuccess: () => {
+      console.log("removed user Clementine Bauch");
       queryClient.invalidateQueries({ queryKey: ["employeeList"] });
     },
   });
