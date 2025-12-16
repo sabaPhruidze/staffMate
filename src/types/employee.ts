@@ -9,3 +9,9 @@ export interface UseEmployeesArg {
   key:string[];
   api:string;
 }
+
+export interface DataType {
+    id: number;
+    label: string;
+    register: "name" | "email" | "company_name";
+}
