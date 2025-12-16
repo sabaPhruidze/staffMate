@@ -1,37 +1,10 @@
-import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
-import axios from "axios";
-interface UserList {
-  id: number;
-  name: string;
-  email: string;
-  company_name: string;
-}
+import type { UserList } from "../../types/employee";
+import { useEmployees } from "../../hooks/useEmployees";
 
 const EmployeeList = () => {
-  const {
-    data = [],
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ["employeeList"],
-    queryFn: async () => {
-      const response = await axios.get(`/api/employees`);
-      console.log("API status:", response.status);
-      console.log("API response:", response.data);
-      if (!Array.isArray(response.data)) return []; // დაცვა
-      return response.data as UserList[];
-    },
-  });
-
-  const queryClient = useQueryClient();
-  const mutation = useMutation({
-    mutationFn: async (id: number) => {
-      return axios.delete(`/api/employees/${id}`);
-    },
-    onSuccess: () => {
-      console.log("removed user Clementine Bauch");
-      queryClient.invalidateQueries({ queryKey: ["employeeList"] });
-    },
+  const { isLoading, error, data, mutation } = useEmployees({
+    key: ["employeeList"],
+    api: "/api/employees",
   });
   if (isLoading)
     return (
@@ -54,10 +27,10 @@ const EmployeeList = () => {
         <table className="w-full border-separate border-spacing-y-2 border-l-2 border-r-2 border-gray-50">
           <thead className=" bg-gray-50">
             <tr>
-              {tableHeader.map((item) => (
+              {tableHeader.map((item, idx) => (
                 <th
                   className="text-left uppercase text-xs tracking-wider text-gray-600 px-4 py-3 select-none"
-                  key={item}
+                  key={idx}
                 >
                   {item}
                 </th>
