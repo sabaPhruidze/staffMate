@@ -46,7 +46,7 @@ const EmployeeList = () => {
       </div>
     );
 
-  const tableHeader = ["Name", "Email", "Company"];
+  const tableHeader = ["Name", "Email", "Company", ""];
 
   return (
     <div className="flex justify-center items-center flex-col block">
