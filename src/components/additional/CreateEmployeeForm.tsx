@@ -22,6 +22,7 @@ const CreateEmployeeForm = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<ValidationSchema>({ resolver: zodResolver(validationSchema) });
   const createMutation = useCreateEmployeeMutation({
     key: ["employeeList"],
@@ -29,7 +30,9 @@ const CreateEmployeeForm = () => {
   });
 
   const onSubmit = (values: ValidationSchema) => {
-    createMutation.mutate(values);
+    createMutation.mutate(values, {
+      onSuccess: () => reset(),
+    });
   };
 
   return (
