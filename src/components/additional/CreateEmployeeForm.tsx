@@ -8,6 +8,11 @@ const validationSchema = z.object({
   email: z.email({ message: "Email is not correct" }),
   company_name: z.string().min(2, { message: "Name is too short" }),
 });
+const DATA: DataType[] = [
+  { id: 1, label: "Name", register: "name" },
+  { id: 2, label: "Email", register: "email" },
+  { id: 3, label: "Company name", register: "company_name" },
+];
 
 type ValidationSchema = z.infer<typeof validationSchema>;
 
@@ -21,11 +26,6 @@ const CreateEmployeeForm = () => {
     console.log("uploaded");
   };
 
-  const DATA: DataType[] = [
-    { id: 1, label: "Name", register: "name" },
-    { id: 2, label: "Email", register: "email" },
-    { id: 3, label: "Company name", register: "company_name" },
-  ];
   return (
     <section className="w-full h-35rem mt-20 flex flex-col bg-white rounded-2xl shadow-xl p-8 max-w-md mx-auto">
       <h2 className="text-2xl font-extrabold text-gray-800 mb-10">
