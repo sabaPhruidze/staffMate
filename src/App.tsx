@@ -8,6 +8,8 @@ function App() {
       <Header />
       <EmployeeList />
       <CreateEmployeeForm />
+      <br />
+      <br />
     </div>
   );
 }
