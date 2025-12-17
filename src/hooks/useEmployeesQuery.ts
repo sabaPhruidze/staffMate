@@ -7,7 +7,7 @@ export const useEmployeesQuery = ({key , api}: UseEmployeesArg) => {
     queryKey:key,
     queryFn: async() => {
         const {data} = await axios.get(api);
-         return data as UserList[]
+        return Array.isArray(data) ? (data as UserList[]) : [];// backend may return  { message: "error" }  null or { data: [...] }
     }
  })
 }

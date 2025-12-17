@@ -1,8 +1,13 @@
 import type { UserList } from "../../types/employee";
-import { useEmployees } from "../../hooks/useEmployees";
+import { useDeleteEmployeeMutation } from "../../hooks/useDeleteEmployeeMutation";
+import { useEmployeesQuery } from "../../hooks/useEmployeesQuery";
 
 const EmployeeList = () => {
-  const { isLoading, error, data, mutation } = useEmployees({
+  const { isLoading, error, data } = useEmployeesQuery({
+    key: ["employeeList"],
+    api: "/api/employees",
+  });
+  const mutation = useDeleteEmployeeMutation({
     key: ["employeeList"],
     api: "/api/employees",
   });
