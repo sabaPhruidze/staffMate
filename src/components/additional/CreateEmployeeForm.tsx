@@ -4,9 +4,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import type { DataType } from "../../types/employee";
 
 const validationSchema = z.object({
-  name: z.string(),
-  email: z.string(),
-  company_name: z.string(),
+  name: z.string().min(2, { message: "Name is too short" }),
+  email: z.email({ message: "Email is not correct" }),
+  company_name: z.string().min(2, { message: "Name is too short" }),
 });
 
 type ValidationSchema = z.infer<typeof validationSchema>;
