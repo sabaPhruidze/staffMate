@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { DataType } from "../../types/employee";
+import { useCreateEmployeeMutation } from "../../hooks/useCreateEmployeeMutation";
 
 const validationSchema = z.object({
   name: z.string().min(2, { message: "Name is too short" }),
@@ -22,8 +23,13 @@ const CreateEmployeeForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<ValidationSchema>({ resolver: zodResolver(validationSchema) });
-  const onSubmit = () => {
-    console.log("uploaded");
+  const createMutation = useCreateEmployeeMutation({
+    key: ["employeeList"],
+    api: "/api/employees",
+  });
+
+  const onSubmit = (values: ValidationSchema) => {
+    createMutation.mutate(values);
   };
 
   return (

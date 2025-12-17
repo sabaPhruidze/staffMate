@@ -15,3 +15,8 @@ export interface DataType {
     label: string;
     register: "name" | "email" | "company_name";
 }
+export interface CreateEmployeePayload {
+  name: string;
+  email: string;
+  company_name: string;
+};
