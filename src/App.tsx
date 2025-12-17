@@ -6,8 +6,8 @@ function App() {
   return (
     <div className="h-full">
       <Header />
-      <EmployeeList />
       <CreateEmployeeForm />
+      <EmployeeList />
       <br />
       <br />
     </div>

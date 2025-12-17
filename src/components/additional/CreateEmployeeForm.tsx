@@ -36,7 +36,7 @@ const CreateEmployeeForm = () => {
   };
 
   return (
-    <section className="w-full h-35rem mt-20 flex flex-col bg-white rounded-2xl shadow-xl p-8 max-w-md mx-auto">
+    <section className=" mt-10 w-full h-35rem flex flex-col bg-white rounded-2xl shadow-xl p-8 max-w-md mx-auto">
       <h2 className="text-2xl font-extrabold text-gray-800 mb-10">
         Employee Registration
       </h2>

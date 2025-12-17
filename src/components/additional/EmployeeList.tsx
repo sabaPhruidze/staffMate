@@ -27,8 +27,8 @@ const EmployeeList = () => {
   const tableHeader = ["Name", "Email", "Company", ""];
 
   return (
-    <div className="flex justify-center items-center flex-col block">
-      <div className="flex flex-col justify-center items-center h-[30rem] bg-white rounded-3xl shadow-lg overflow-y-auto p-6 w-full">
+    <div className="flex justify-center items-center flex-col block ">
+      <div className="max-w-[800px] mt-10 flex flex-col justify-center items-center h-[30rem] bg-white rounded-3xl shadow-lg overflow-y-auto p-6 w-full">
         <table className="w-full border-separate border-spacing-y-2 border-l-2 border-r-2 border-gray-50">
           <thead className=" bg-gray-50">
             <tr>
