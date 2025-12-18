@@ -3,6 +3,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { DataType } from "../../types/employee";
 import { useCreateEmployeeMutation } from "../../hooks/useCreateEmployeeMutation";
+import { useStore } from "../../store/useStore";
 
 const validationSchema = z.object({
   name: z.string().min(2, { message: "Name is too short" }),
@@ -28,10 +29,13 @@ const CreateEmployeeForm = () => {
     key: ["employeeList"],
     api: "/api/employees",
   });
-
+  const currentSC = useStore((state) => state.increment);
   const onSubmit = (values: ValidationSchema) => {
     createMutation.mutate(values, {
-      onSuccess: () => reset(),
+      onSuccess: () => {
+        currentSC();
+        reset();
+      },
     });
   };
 
