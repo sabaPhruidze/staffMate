@@ -1,7 +1,12 @@
 import { useStore } from "../../store/useStore.ts";
+import { useEffect } from "react";
 
 const Header = () => {
   const currentSC = useStore((state) => state.saveCount);
+  const fetchEmployees = useStore((state) => state.fetchEmployees);
+  useEffect(() => {
+    fetchEmployees();
+  }, [fetchEmployees]);
   return (
     <header className="w-full h-20 bg-blue-500 flex items-center justify-center text-white font-bold">
       Saved Stuff: {currentSC}{" "}
