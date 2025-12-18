@@ -29,11 +29,11 @@ const CreateEmployeeForm = () => {
     key: ["employeeList"],
     api: "/api/employees",
   });
-  const currentSC = useStore((state) => state.increment);
+  const increment = useStore((state) => state.increment);
   const onSubmit = (values: ValidationSchema) => {
     createMutation.mutate(values, {
       onSuccess: () => {
-        currentSC();
+        increment();
         reset();
       },
     });
