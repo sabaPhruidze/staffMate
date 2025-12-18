@@ -57,10 +57,10 @@ const CreateEmployeeForm = () => {
                 id={item.register}
                 type="text"
                 {...register(item.register)}
-                className="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none mb-2"
+                className="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none my-2"
               />
               {errors[item.register] && (
-                <p className="text-red-500 text-xs mt-1 font-medium flex items-center">
+                <p className="text-red-500 text-xs font-medium flex items-center mb-1">
                   {String(errors[item.register]?.message)}
                 </p>
               )}
@@ -69,7 +69,7 @@ const CreateEmployeeForm = () => {
         </fieldset>
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 active:scale-95 transition-all shadow-lg shadow-blue-200"
+          className="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 active:scale-95 transition-all shadow-lg shadow-blue-200 mt-2"
         >
           Save
         </button>

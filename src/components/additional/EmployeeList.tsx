@@ -13,7 +13,7 @@ const EmployeeList = () => {
   });
   if (isLoading)
     return (
-      <div className="flex justify-center align-center text-white font-bold">
+      <div className="flex justify-center align-center text-black font-bold m-10">
         fetching...
       </div>
     );
