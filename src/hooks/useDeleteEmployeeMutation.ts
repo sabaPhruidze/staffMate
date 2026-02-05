@@ -8,8 +8,8 @@ export const useDeleteEmployeeMutation = ({ api, key }: UseEmployeesArg) => {
     mutationFn: async (id: number) => {
       await axios.delete(`${api}/${id}`);
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: key });
+    onSuccess: async () => {
+      await queryClient.refetchQueries({ queryKey: key, type: "active" });
     },
   });
 };
