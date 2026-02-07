@@ -1,9 +1,9 @@
-import { useStore } from "../../store/useStore.ts";
+import { useEmployeeStore } from "../../store/useStore.ts";
 import { useEffect } from "react";
 
 const Header = () => {
-  const currentSC = useStore((state) => state.saveCount);
-  const fetchEmployees = useStore((state) => state.fetchEmployees);
+  const currentSC = useEmployeeStore((state) => state.saveCount);
+  const fetchEmployees = useEmployeeStore((state) => state.fetchEmployees);
   useEffect(() => {
     fetchEmployees();
   }, [fetchEmployees]);
