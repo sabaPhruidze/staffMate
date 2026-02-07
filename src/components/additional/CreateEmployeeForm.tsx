@@ -29,11 +29,10 @@ const CreateEmployeeForm = () => {
     key: ["employeeList"],
     api: "/api/employees",
   });
-  const increment = useEmployeeStore((state) => state.increment);
   const onSubmit = (values: ValidationSchema) => {
     createMutation.mutate(values, {
       onSuccess: () => {
-        increment();
+        useEmployeeStore.getState().fetchEmployees(); // increment might be false in case of dublicate or error so added this here as well
         reset();
       },
     });

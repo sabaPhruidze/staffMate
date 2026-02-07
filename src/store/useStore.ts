@@ -6,8 +6,6 @@ type UseStore = {
   employees: UserList[];
   fetchEmployees: () => Promise<void>;
   saveCount: number;
-  increment: () => void;
-  decrement: () => void;
 };
 
 export const useEmployeeStore = create<UseStore>((set) => ({
@@ -21,9 +19,4 @@ export const useEmployeeStore = create<UseStore>((set) => ({
       saveCount: employees.length,
     });
   },
-  increment: () => set((state) => ({ saveCount: state.saveCount + 1 })),
-  decrement: () =>
-    set((state) => ({
-      saveCount: state.saveCount > 0 ? state.saveCount - 1 : 0,
-    })),
 }));
