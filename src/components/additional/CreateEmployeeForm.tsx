@@ -11,9 +11,14 @@ const validationSchema = z.object({
   company_name: z.string().min(2, { message: "Name is too short" }),
 });
 const DATA: DataType[] = [
-  { id: 1, label: "Name", register: "name" },
-  { id: 2, label: "Email", register: "email" },
-  { id: 3, label: "Company name", register: "company_name" },
+  { id: 1, label: "Name", register: "name", autoComplete: "name" },
+  { id: 2, label: "Email", register: "email", autoComplete: "email" },
+  {
+    id: 3,
+    label: "Company name",
+    register: "company_name",
+    autoComplete: "organization",
+  },
 ];
 //fwefwef
 type ValidationSchema = z.infer<typeof validationSchema>;
@@ -57,6 +62,7 @@ const CreateEmployeeForm = () => {
                 {item.label}
               </label>
               <input
+                autoComplete={item.autoComplete}
                 id={item.register}
                 type="text"
                 {...register(item.register)}

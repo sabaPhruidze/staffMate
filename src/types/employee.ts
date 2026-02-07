@@ -6,17 +6,18 @@ export interface UserList {
 }
 
 export interface UseEmployeesArg {
-  key:string[];
-  api:string;
+  key: string[];
+  api: string;
 }
 
 export interface DataType {
-    id: number;
-    label: string;
-    register: "name" | "email" | "company_name";
+  id: number;
+  label: string;
+  register: "name" | "email" | "company_name";
+  autoComplete: string;
 }
 export interface CreateEmployeePayload {
   name: string;
   email: string;
   company_name: string;
-};
+}
